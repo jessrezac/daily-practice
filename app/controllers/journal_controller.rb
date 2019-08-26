@@ -1,7 +1,7 @@
 class JournalController < ApplicationController
 
     get '/journals' do
-        "hey there"
+        "A user is logged in."
     end
 
 end
