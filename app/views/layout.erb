@@ -4,27 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title><%= @title || "Daily Practice" %></title></head>
 <body>
 
-    <div>
-        <a href="/" class="title">Daily Practice</a>
+    <div class="container pb-4">
 
-        <ul>
-            <li><a href="/login" title="Login">Login</a></li>
-            <li><a href="/signup" title="Signup">Signup</a></li>
-            <li><a href="/logout" title="Logout">Logout</a></li>
-            <li><a href="/" title="Home">Home</a></li>
-        </ul>
+        <nav>
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login" title="Login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup" title="Signup">Signup</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" title="Logout">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="/" title="Home">Home</a>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="/" class="h1">Daily Practice</a>
+        <p class="h2 text-muted">A tiny journal for your gratitude, atonement, and commitment</p>
 
     </div>
 
-    <div>
+    <div class="container">
 
         <%= yield %>
 
     </div>
-    
+
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 </html>
