@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     end
 
     get '/' do
-        "root"
+        erb :journals
     end
 
 end

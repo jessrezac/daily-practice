@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
 
     get '/signup' do
-        erb :signup
+        erb :"sessions/signup"
     end
 
     post '/signup' do
@@ -18,7 +18,7 @@ class SessionController < ApplicationController
     end
 
     get '/login' do
-        erb :login
+        erb :"sessions/login"
     end
 
     post '/login' do
@@ -37,5 +37,4 @@ class SessionController < ApplicationController
         redirect to '/'
     end
 
-    
 end

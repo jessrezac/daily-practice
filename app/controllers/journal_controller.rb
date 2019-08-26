@@ -1,7 +1,7 @@
 class JournalController < ApplicationController
 
     get '/journals' do
-        "A user is logged in."
+        erb :journals
     end
 
 end
