@@ -9,6 +9,7 @@ gem 'sinatra-activerecord'
 group :development do
     gem 'sqlite3'
     gem 'rake'
+    gem 'faker'
     gem 'pry'
     gem 'shotgun'
 end
