@@ -1,0 +1,6 @@
+    <% @title = "#{@journal.title}  | Daily Practice" %>
+
+
+    <h1><a href="/journals/<%= @journal.id %>"><%= @journal.title %></a></h2>
+    <p><em><%= @journal.date %></em></p>
+    <p><%= break_lines(@journal.content) %></p>

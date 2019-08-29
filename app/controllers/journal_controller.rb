@@ -20,7 +20,7 @@ class JournalController < ApplicationController
 
     get '/journals/:id' do
         @journal = Journal.find(params[:id])
-        "This is #{@journal.title}"
+        erb :'journals/show'
     end
 
     helpers do
