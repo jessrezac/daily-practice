@@ -6,7 +6,7 @@ class JournalController < ApplicationController
     end
 
     get '/journals/new' do
-        erb :'journal/new'
+        erb :'journals/new'
     end
 
     post '/journals' do
@@ -27,7 +27,6 @@ class JournalController < ApplicationController
         def break_lines(text)
             text.to_s.gsub(/\\n/, '<br/>')
         end
-
     end
 
 end
