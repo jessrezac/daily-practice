@@ -11,11 +11,21 @@ class JournalController < ApplicationController
 
     post '/journals' do
         binding.pry
+
         journal = Journal.create(
-            title: params[:journal][:title], 
-            date: params[:journal][:date], 
+            title: params[:journal][:title],
+            date: params[:journal][:date],
             content: params[:journal][:content],
             user_id: current_user.id )
+
+        gratitudes = params[:journal][:gratitudes]
+
+        gratitudes.each do |details|
+            Gratitude.new(content: details.content, journal_id: journal.id)
+        end
+
+        binding.pry
+
         redirect to "/journals/#{journal.id}"
     end
 
