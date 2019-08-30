@@ -1,0 +1,12 @@
+    <% @title = "#{@journal.title}  | Daily Practice" %>
+
+
+    <h1><%= @journal.title %></h2>
+    <p><em><%= @journal.date %></em></p>
+    <p><%= break_lines(@journal.content) %></p>
+
+    <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
+    <form action="/journals/<%= @journal.id %>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
+    </form>
