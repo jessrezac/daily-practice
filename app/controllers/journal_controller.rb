@@ -10,6 +10,7 @@ class JournalController < ApplicationController
     end
 
     post '/journals' do
+        binding.pry
         journal = Journal.create(
             title: params[:journal][:title], 
             date: params[:journal][:date], 
