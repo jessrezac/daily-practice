@@ -6,4 +6,8 @@ ActiveRecord::Base.establish_connection(
     :database => "db/dailypractice.sqlite"
 )
 
+ActiveSupport::Inflector.inflections do |inflect|
+    inflect.irregular 'forgiveness', 'forgivenesses'
+end
+
 require_all 'app'
