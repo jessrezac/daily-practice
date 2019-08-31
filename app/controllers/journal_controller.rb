@@ -29,6 +29,7 @@ class JournalController < ApplicationController
 
     get '/journals/:id' do
         @journal = Journal.find(params[:id])
+        @gratitudes = @journal.gratitudes
         erb :'journals/show'
     end
 

@@ -5,6 +5,16 @@
     <p><em><%= @journal.date %></em></p>
     <p><%= break_lines(@journal.content) %></p>
 
+    <% if @gratitudes.count > 0 %>
+        <p>Today I'm grateful for...</p>
+        <ul>
+            <% @gratitudes.each do |gratitude| %>
+                <li><%= break_lines(gratitude.content) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
+
     <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
     <form action="/journals/<%= @journal.id %>" method="post">
         <input id="hidden" type="hidden" name="_method" value="delete">
