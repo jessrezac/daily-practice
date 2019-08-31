@@ -49,11 +49,19 @@ class JournalController < ApplicationController
 
         # update gratitude in database by replacing content or deleting object if content is empty
         gratitudes.each do |details|
-            gratitude = Gratitude.find(details[:id])
-            if details[:content] == ""
-                gratitude.delete
+
+            if details[:id]
+                gratitude = Gratitude.find(details[:id])
+                if details[:content] == ""
+                    gratitude.delete
+                else
+                    gratitude.update(details)
+                end
             else
-                gratitude.update(details)
+                unless details[:content] == ""
+                    gratitude = Gratitude.create(details)
+                    @journal.gratitudes << gratitude
+                end
             end
         end
 
