@@ -43,25 +43,8 @@ class JournalController < ApplicationController
             content: params[:journal][:content]
         )
 
-        gratitudes = params[:journal][:gratitudes]
-
-        # update gratitude in database by replacing content or deleting object if content is empty
-        gratitudes.each do |details|
-
-            if details[:id]
-                gratitude = Gratitude.find(details[:id])
-                if details[:content] == ""
-                    gratitude.delete
-                else
-                    gratitude.update(details)
-                end
-            else
-                unless details[:content] == ""
-                    gratitude = Gratitude.create(details)
-                    @journal.gratitudes << gratitude
-                end
-            end
-        end
+        update_gratitudes(params[:journal][:gratitudes])
+        update_forgivenesses(params[:journal][:forgivenesses])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -92,6 +75,27 @@ class JournalController < ApplicationController
             end
         end
 
+        def update_gratitudes(gratitudes)
+            # update gratitude in database by replacing content or deleting object if content is empty
+            gratitudes.each do |details|
+
+                if details[:id]
+                    gratitude = Gratitude.find(details[:id])
+                    if details[:content] == ""
+                        gratitude.delete
+                    else
+                        gratitude.update(details)
+                    end
+                else
+                    unless details[:content] == ""
+                        gratitude = Gratitude.create(details)
+                        @journal.gratitudes << gratitude
+                    end
+                end
+            end
+        end
+
+
         def create_forgivenesses(forgivenesses)
             forgivenesses.each do |details|
                 unless details[:content] == ""
@@ -101,6 +105,26 @@ class JournalController < ApplicationController
             end
         end
 
+
+        def update_forgivenesses(forgivenesses)
+            # update forgiveness in database by replacing content or deleting object if content is empty
+            forgivenesses.each do |details|
+
+                if details[:id]
+                    forgiveness = Forgiveness.find(details[:id])
+                    if details[:content] == ""
+                        forgiveness.delete
+                    else
+                        forgiveness.update(details)
+                    end
+                else
+                    unless details[:content] == ""
+                        forgiveness = Forgiveness.create(details)
+                        @journal.forgivenesses << forgiveness
+                    end
+                end
+            end
+        end
     
     end
 
