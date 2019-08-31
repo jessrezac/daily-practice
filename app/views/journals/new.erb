@@ -18,7 +18,14 @@
     <% 3.times do %>
         <div class="form-group">
             <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"></textarea>
+            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"></textarea>
+        </div>
+    <% end %>
+
+    <% 2.times do %>
+        <div class="form-group">
+            <label for="forgiveness">Forgiveness</label>
+            <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" class="form-control form-control-lg"></textarea>
         </div>
     <% end %>
 

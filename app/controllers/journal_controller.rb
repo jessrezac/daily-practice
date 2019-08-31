@@ -18,6 +18,7 @@ class JournalController < ApplicationController
             user_id: current_user.id )
 
         create_gratitudes(params[:journal][:gratitudes])
+        create_forgivenesses(params[:journal][:forgivenesses])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -86,6 +87,15 @@ class JournalController < ApplicationController
                 unless details[:content] == ""
                     gratitude = Gratitude.create(details)
                     @journal.gratitudes << gratitude
+                end
+            end
+        end
+
+        def create_forgivenesses(forgivenesses)
+            forgivenesses.each do |details|
+                unless details[:content] == ""
+                    forgiveness = Forgiveness.create(details)
+                    @journal.forgivenesses << forgiveness
                 end
             end
         end
