@@ -11,22 +11,15 @@ class JournalController < ApplicationController
 
     post '/journals' do
 
-        journal = Journal.create(
+        @journal = Journal.create(
             title: params[:journal][:title],
             date: params[:journal][:date],
             content: params[:journal][:content],
             user_id: current_user.id )
 
-        gratitudes = params[:journal][:gratitudes]
+        create_gratitudes(params[:journal][:gratitudes])
 
-        gratitudes.each do |details|
-            unless details[:content] == ""
-                gratitude = Gratitude.create(details)
-                journal.gratitudes << gratitude
-            end
-        end
-
-        redirect to "/journals/#{journal.id}"
+        redirect to "/journals/#{@journal.id}"
     end
 
     get '/journals/:id' do
@@ -87,6 +80,17 @@ class JournalController < ApplicationController
         def break_lines(text)
             text.to_s.gsub(/\r\n/, '<br/>')
         end
+
+        def create_gratitudes(gratitudes)
+            gratitudes.each do |details|
+                unless details[:content] == ""
+                    gratitude = Gratitude.create(details)
+                    @journal.gratitudes << gratitude
+                end
+            end
+        end
+
+    
     end
 
 end
