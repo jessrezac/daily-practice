@@ -14,6 +14,15 @@
         <label for="text">Free-Writing</label>
         <textarea class="form-control form-control-lg" name="journal[content]" id="content" cols="30" rows="10"><%= @journal.content %></textarea>
     </div>
+
+    <% @journal.gratitudes.each do |gratitude| %>
+        <div class="form-group">
+            <input type="hidden" name="journal[gratitudes][][id]" value="<%= gratitude.id %>">
+            <label for="gratitude">Gratitude</label>
+            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"><%= gratitude.content %></textarea>
+        </div>
+    <% end %>
+
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Update</button>
     </div>

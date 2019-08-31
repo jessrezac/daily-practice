@@ -10,7 +10,6 @@ class JournalController < ApplicationController
     end
 
     post '/journals' do
-        binding.pry
 
         journal = Journal.create(
             title: params[:journal][:title],
@@ -21,10 +20,9 @@ class JournalController < ApplicationController
         gratitudes = params[:journal][:gratitudes]
 
         gratitudes.each do |details|
-            Gratitude.new(content: details.content, journal_id: journal.id)
+            gratitude = Gratitude.create(details)
+            journal.gratitudes << gratitude
         end
-
-        binding.pry
 
         redirect to "/journals/#{journal.id}"
     end
@@ -41,13 +39,36 @@ class JournalController < ApplicationController
 
     patch '/journals/:id' do
         @journal = Journal.find(params[:id])
-        @journal.update(params[:journal])
+        @journal.update(
+            title: params[:journal][:title],
+            date: params[:journal][:date],
+            content: params[:journal][:content]
+        )
+
+        gratitudes = params[:journal][:gratitudes]
+
+        # update gratitude in database by replacing content or deleting object if content is empty
+        gratitudes.each do |details|
+            gratitude = Gratitude.find(details[:id])
+            if details[:content] == ""
+                gratitude.delete
+            else
+                gratitude.update(details)
+            end
+        end
+
         redirect to "/journals/#{@journal.id}"
     end
 
     delete '/journals/:id' do
         @journal = Journal.find(params[:id])
+
+        @journal.gratitudes.each do |gratitude|
+            gratitude.delete
+        end
+        
         @journal.delete
+        
         redirect to '/journals'
     end
 
