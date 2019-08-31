@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_024154) do
+ActiveRecord::Schema.define(version: 2019_08_30_034643) do
+
+  create_table "commitments", force: :cascade do |t|
+    t.text "content"
+    t.integer "journal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forgivenesses", force: :cascade do |t|
+    t.text "content"
+    t.integer "journal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "gratitudes", force: :cascade do |t|
+    t.text "content"
+    t.integer "journal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
