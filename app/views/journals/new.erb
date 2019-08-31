@@ -14,18 +14,14 @@
         <label for="text">Free-Writing</label>
         <textarea class="form-control form-control-lg" name="journal[content]" id="content" cols="30" rows="10"></textarea>
     </div>
-    <div class="form-group">
-        <label for="gratitude">Gratitude</label>
-        <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="gratitude">Gratitude</label>
-        <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="gratitude">Gratitude</label>
-        <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"></textarea>
-    </div>
+    
+    <% 3.times do %>
+        <div class="form-group">
+            <label for="gratitude">Gratitude</label>
+            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"></textarea>
+        </div>
+    <% end %>
+
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
     </div>
