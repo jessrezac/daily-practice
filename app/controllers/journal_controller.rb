@@ -10,7 +10,6 @@ class JournalController < ApplicationController
     end
 
     post '/journals' do
-        binding.pry
 
         journal = Journal.create(
             title: params[:journal][:title],
@@ -21,7 +20,8 @@ class JournalController < ApplicationController
         gratitudes = params[:journal][:gratitudes]
 
         gratitudes.each do |details|
-            Gratitude.new(content: details.content, journal_id: journal.id)
+            gratitude = Gratitude.create(details)
+            journal.gratitudes << gratitude
         end
 
         binding.pry
