@@ -20,8 +20,10 @@ class JournalController < ApplicationController
         gratitudes = params[:journal][:gratitudes]
 
         gratitudes.each do |details|
-            gratitude = Gratitude.create(details)
-            journal.gratitudes << gratitude
+            unless details[:content] == ""
+                gratitude = Gratitude.create(details)
+                journal.gratitudes << gratitude
+            end
         end
 
         redirect to "/journals/#{journal.id}"
