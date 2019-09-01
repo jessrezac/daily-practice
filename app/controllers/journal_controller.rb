@@ -19,6 +19,7 @@ class JournalController < ApplicationController
 
         create_gratitudes(params[:journal][:gratitudes])
         create_forgivenesses(params[:journal][:forgivenesses])
+        create_commitment(params[:journal][:commitment])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -27,6 +28,7 @@ class JournalController < ApplicationController
         @journal = Journal.find(params[:id])
         @gratitudes = @journal.gratitudes
         @forgivenesses = @journal.forgivenesses
+        @commitments = @journal.commitments
         erb :'journals/show'
     end
 
@@ -45,6 +47,7 @@ class JournalController < ApplicationController
 
         update_gratitudes(params[:journal][:gratitudes])
         update_forgivenesses(params[:journal][:forgivenesses])
+        update_commitment(params[:journal][:commitment])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -122,6 +125,31 @@ class JournalController < ApplicationController
                         forgiveness = Forgiveness.create(details)
                         @journal.forgivenesses << forgiveness
                     end
+                end
+            end
+        end
+
+        def create_commitment(details)
+            unless details == ""
+                commitment = Commitment.create(content: details)
+                @journal.commitments << commitment
+            end
+        end
+
+
+        def update_commitment(details)
+            # update commitment in database by replacing content or deleting object if content is empty
+            if details[:id]
+                commitment = Commitment.find(details[:id])
+                if details[:content] == ""
+                    commitment.delete
+                else
+                    commitment.update(content: details[:content])
+                end
+            else
+                unless details[:content] == ""
+                    commitment = Commitment.create(content: details[:content])
+                    @journal.commitments << commitment
                 end
             end
         end
