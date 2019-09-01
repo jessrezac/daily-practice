@@ -10,25 +10,54 @@
         <label for="text">Date</label>
         <input class="form-control form-control-lg" type="text" name="journal[date]" id="date"  value="<%= @journal.date %>">
     </div>
+
+    <!-- begin FreeWrite -->
+
     <div class="form-group">
         <label for="text">Free-Writing</label>
         <textarea class="form-control form-control-lg" name="journal[content]" id="content" cols="30" rows="10"><%= @journal.content %></textarea>
     </div>
 
+    <!-- begin Gratitude -->
+    
     <% @journal.gratitudes.each do |gratitude| %>
         <div class="form-group">
             <input type="hidden" name="journal[gratitudes][][id]" value="<%= gratitude.id %>">
             <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"><%= gratitude.content %></textarea>
+            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"><%= gratitude.content %></textarea>
         </div>
     <% end %>
+    
     <% empty_gratitudes = 3 - @journal.gratitudes.count %>
+
     <% empty_gratitudes.times do %>
         <div class="form-group">
             <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" id="" cols="30" rows="2"></textarea>
+            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"></textarea>
         </div>
     <% end %>
+
+    <!-- begin Forgiveness -->
+
+    <% @journal.forgivenesses.each do |forgiveness| %>
+        <div class="form-group">
+            <input type="hidden" name="journal[forgivenesses][][id]" value="<%= forgiveness.id %>">
+            <label for="forgiveness">Forgiveness</label>
+            <textarea class="form-control form-control-lg" name="journal[forgivenesses][][content]" cols="30" rows="2"><%= forgiveness.content %></textarea>
+        </div>
+    <% end %>
+
+    <% empty_forgivenesses = 2 - @journal.forgivenesses.count %>
+
+    <% empty_forgivenesses.times do %>
+        <div class="form-group">
+            <label for="forgiveness">Forgiveness</label>
+            <textarea class="form-control form-control-lg" name="journal[forgivenesses][][content]" cols="30" rows="2"></textarea>
+        </div>
+    <% end %>
+
+    <!-- Submit -->
+
 
     <div class="form-group">
         <button class="btn btn-primary" type="submit">Update</button>

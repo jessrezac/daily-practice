@@ -14,6 +14,15 @@
         </ul>
     <% end %>
 
+    <% if @forgivenesses.count > 0 %>
+        <p>Today I forgive...</p>
+        <ul>
+            <% @forgivenesses.each do |forgiveness| %>
+                <li><%= break_lines(forgiveness.content) %></li>
+            <% end %>
+        </ul>
+    <% end %>
+
 
     <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
     <form action="/journals/<%= @journal.id %>" method="post">
