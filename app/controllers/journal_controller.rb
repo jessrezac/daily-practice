@@ -19,6 +19,7 @@ class JournalController < ApplicationController
 
         create_gratitudes(params[:journal][:gratitudes])
         create_forgivenesses(params[:journal][:forgivenesses])
+        create_commitments(params[:journal][:commitment])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -121,6 +122,36 @@ class JournalController < ApplicationController
                     unless details[:content] == ""
                         forgiveness = Forgiveness.create(details)
                         @journal.forgivenesses << forgiveness
+                    end
+                end
+            end
+        end
+
+        def create_commitments(commitments)
+            commitments.each do |details|
+                unless details[:content] == ""
+                    commitment = Commitment.create(details)
+                    @journal.commitments << commitment
+                end
+            end
+        end
+
+
+        def update_commitments(commitments)
+            # update commitments in database by replacing content or deleting object if content is empty
+            commitments.each do |details|
+
+                if details[:id]
+                    commitment = Commitment.find(details[:id])
+                    if details[:content] == ""
+                        commitment.delete
+                    else
+                        commitment.update(details)
+                    end
+                else
+                    unless details[:content] == ""
+                        commitment = Commitment.create(details)
+                        @journal.commitments << commitment
                     end
                 end
             end
