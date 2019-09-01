@@ -56,6 +56,25 @@
         </div>
     <% end %>
 
+    <!-- begin Commitment -->
+    
+    <% @journal.commitments.each do |commitment| %>
+        <div class="form-group">
+            <input type="hidden" name="journal[commitment][id]" value="<%= commitment.id %>">
+            <label for="commitment">Commitment</label>
+            <textarea class="form-control form-control-lg" name="journal[commitment][content]" cols="30" rows="2"><%= commitment.content %></textarea>
+        </div>
+    <% end %>
+
+    <% empty_commitments = 1 - @journal.commitments.count %>
+
+    <% empty_commitments.times do %>
+        <div class="form-group">
+            <label for="commitment">Commitment</label>
+            <textarea class="form-control form-control-lg" name="journal[commitment][content]" cols="30" rows="2"></textarea>
+        </div>
+    <% end %>
+
     <!-- Submit -->
 
 

@@ -19,7 +19,7 @@ class JournalController < ApplicationController
 
         create_gratitudes(params[:journal][:gratitudes])
         create_forgivenesses(params[:journal][:forgivenesses])
-        create_commitments(params[:journal][:commitment])
+        create_commitment(params[:journal][:commitment])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -46,6 +46,7 @@ class JournalController < ApplicationController
 
         update_gratitudes(params[:journal][:gratitudes])
         update_forgivenesses(params[:journal][:forgivenesses])
+        update_commitment(params[:journal][:commitment])
 
         redirect to "/journals/#{@journal.id}"
     end
@@ -127,32 +128,27 @@ class JournalController < ApplicationController
             end
         end
 
-        def create_commitments(commitments)
-            commitments.each do |details|
-                unless details[:content] == ""
-                    commitment = Commitment.create(details)
-                    @journal.commitments << commitment
-                end
+        def create_commitment(details)
+            unless details == ""
+                commitment = Commitment.create(content: details)
+                @journal.commitments << commitment
             end
         end
 
 
-        def update_commitments(commitments)
-            # update commitments in database by replacing content or deleting object if content is empty
-            commitments.each do |details|
-
-                if details[:id]
-                    commitment = Commitment.find(details[:id])
-                    if details[:content] == ""
-                        commitment.delete
-                    else
-                        commitment.update(details)
-                    end
+        def update_commitment(details)
+            # update commitment in database by replacing content or deleting object if content is empty
+            if details[:id]
+                commitment = Commitment.find(details[:id])
+                if details[:content] == ""
+                    commitment.delete
                 else
-                    unless details[:content] == ""
-                        commitment = Commitment.create(details)
-                        @journal.commitments << commitment
-                    end
+                    commitment.update(content: details[:content])
+                end
+            else
+                unless details[:content] == ""
+                    commitment = Commitment.create(content: details[:content])
+                    @journal.commitments << commitment
                 end
             end
         end
