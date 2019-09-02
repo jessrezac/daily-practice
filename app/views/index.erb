@@ -1,13 +1,25 @@
 <% @title = "Daily Practice | A gratitude, forgiveness, and commitment journal" %>
 
-<div class="text-center">
-
+<div class="d-flex align-content-center flex-wrap h-100">
+    
     <main role="main" class="inner cover">
-        <h1 class="cover-heading">Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+        <h1>Daily Practice</h1>
         <p class="lead">
-            <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+            A journal for gratitude, forgiveness, commitment
         </p>
+
+        <% if is_logged_in? %>
+            <p class="lead">
+                <a href="/journals" class="btn btn-lg btn-primary">Continue Your Practice</a>
+                <a href="/logout" class="btn btn-lg btn-secondary">Log Out</a>
+            </p>
+        <% else %>
+            <p class="lead">
+                <a href="/signup" class="btn btn-lg btn-primary">Sign Up</a>
+                <a href="/login" class="btn btn-lg btn-secondary">Log In</a>
+            </p>
+        <% end %>
+
     </main>
 
 </div>
