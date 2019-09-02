@@ -5,22 +5,28 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-$white:    #E8E9EB;
+$white:    #e8e9ed;
 $black:    #313638;
 
-$middle-green-yellow:      #A6AC63;
-$puce:      #CC8B86;
-$gainsboro:  #E0DFD5;
+$mustard:      #ffc759;
+$french-pink:      #ff7b9c;
+$dark-blue-gray:  #607196;
+$lavender-gray: #babfd1;
+$glitter:   #e8e9ed;
 $onyx:  #313638;
 
-$primary:        $middle-green-yellow;
-$secondary:     $puce;
-$success:        $puce;
-$info:              $puce;
-$warning:        $puce;
-$danger:            $middle-green-yellow;
-$light:         $gainsboro;
+$primary:        $dark-blue-gray;
+$secondary:     $lavender-gray;
+$success:        $french-pink;
+$info:              $mustard;
+$warning:        $mustard;
+$danger:            $french-pink;
+$light:         $glitter;
 $dark:              $onyx;
+
+$font-family-sans-serif: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-serif: "Lora", serif;
+$headings-font-family: $font-family-serif;
 
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
