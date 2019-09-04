@@ -1,26 +1,52 @@
 <% @title = "Today's Practice | Daily Practice" %>
 
-<form action="/journals" method="post">
-
-    <div class="form-group">
-        <label for="text">Title</label>
-        <input class="form-control form-control-lg" type="text" name="journal[title]" id="title">
-    </div>
-    <div class="form-group">
-        <label for="text">Date</label>
-        <input class="form-control form-control-lg" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>">
-    </div>
-    <div class="form-group">
-        <label for="text">Free-Writing</label>
-        <textarea class="form-control form-control-lg" name="journal[content]" id="content" cols="30" rows="10"></textarea>
-    </div>
-    
-    <% 3.times do %>
-        <div class="form-group">
-            <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"></textarea>
+<div id="editor" class="container">
+    <form action="/journals" method="post">
+        <div class="w-100 pb-2">
+            <h2 class="question">What is on your mind today?</h2>
         </div>
-    <% end %>
+        <div id="title" class="d-flex flex-row w-100 justify-content-between align-items-center">
+            <div class="flex-grow-1 w-75 form-group">
+                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" placeholder="Title" aria-label="Title">
+            </div>
+            <div class="form-group pl-2 w-25">
+                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>" aria-label="Date">
+            </div>
+        </div>
+
+        <div class="w-100 pb-2">
+            <h2 class="question">What are you grateful for today?</h2>
+        </div>
+        <div id="freewrite" class="d-flex align-items-center">
+            <div class="form-group w-100">
+                <textarea class="form-control" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing"></textarea>
+            </div>
+        </div>
+
+        <div class="w-100 pb-2">
+            <h2 class="question">What needs forgiveness today?</h2>
+        </div>
+        
+        <div class="w-100 pb-2">
+            <h2 class="question">What is your commitment for today?</h2>
+        </div>
+
+        <div class="row d-flex flex-wrap align-content-center h-75">
+            
+        </div>
+
+        <% 3.times do %>
+
+            <div class="form-group">
+                <label for="gratitude">Gratitude</label>
+                <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"></textarea>
+            </div>
+        
+        <% end %>
+
+    </div>    
+    
+    
 
     <% 2.times do %>
         <div class="form-group">
