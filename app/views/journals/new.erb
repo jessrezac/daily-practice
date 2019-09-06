@@ -2,62 +2,73 @@
 
 <div id="editor" class="container">
     <form action="/journals" method="post">
-        <div class="w-100 pb-2">
-            <h2 class="question">What is on your mind today?</h2>
-        </div>
-        <div id="title" class="d-flex flex-row w-100 justify-content-between align-items-center">
-            <div class="flex-grow-1 w-75 form-group">
-                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" placeholder="Title" aria-label="Title">
+        <div class="h-75" data-aos="fade-up">
+            <div class="w-100 pb-2">
+                <h2 class="question">What is on your mind today?</h2>
             </div>
-            <div class="form-group pl-2 w-25">
-                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>" aria-label="Date">
-            </div>
-        </div>
-        <div id="freewrite" class="d-flex flex-row align-items-center">
-            <div class="form-group w-100">
-                <textarea class="form-control" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing"></textarea>
-            </div>
-        </div>
-
-        <div class="w-100 pb-2">
-            <h2 class="question">What are you grateful for today?</h2>
-        </div>
-        
-        <% 3.times do %>
-        <div class="d-flex flex-row align-items-center">
-            <i class="fas fa-heart h3 pr-4"></i>
-            <div class="form-group w-100">
-                <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' cols="30" rows="2" arialabel="Gratitude"></textarea>
-            </div>
-        </div>
-        
-        <% end %>
-
-        <div class="w-100 pb-2">
-            <h2 class="question">What needs forgiveness today?</h2>
-        </div>
-
-        <% 2.times do %>
-            <div class="d-flex flex-row align-items-center">
-                <i class="fas fa-spa h3 pr-4"></i>
-                <div class="form-group w-100">
-                    <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control form-control-lg" arialabel="Forgiveness"></textarea>
+            <div id="title" class="d-flex flex-row w-100 justify-content-between align-items-center">
+                <div class="flex-grow-1 w-75 form-group">
+                    <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" placeholder="Title" aria-label="Title">
+                </div>
+                <div class="form-group pl-2 w-25">
+                    <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>" aria-label="Date">
                 </div>
             </div>
-        <% end %>
-        
-        <div class="w-100 pb-2">
-            <h2 class="question">What is your commitment for today?</h2>
-        </div>
-
-        <div class="d-flex flex-row align-items-center">
-            <i class="fas fa-burn h3 pr-4"></i>
-            <div class="form-group w-100">
-                <textarea name="journal[commitment]" class="form-control form-control-lg" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' arialabel="commitment"></textarea>
+            <div id="freewrite" class="d-flex flex-row align-items-center">
+                <div class="form-group w-100">
+                    <textarea class="form-control h-100" rows="10" cols="30" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing" placeholder="Take a moment to journal."></textarea>
+                </div>
             </div>
         </div>
+        <div class="h-75" data-aos="fade-up">
+            <div class="w-100 pb-2">
+                <h2 class="question">What are you grateful for today?</h2>
+            </div>
+            
+            <% 3.times do %>
+            <div class="d-flex flex-row align-items-center">
+                <i class="fas fa-heart h3 pr-4"></i>
+                <div class="form-group w-100">
+                    <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' cols="30" rows="2" arialabel="Gratitude"></textarea>
+                </div>
+            </div>
+            
+            <% end %>
+        </div>
 
-        <div class="form-group">
+        <div class="h-75" data-aos="fade-up">
+
+            <div class="w-100 pb-2">
+                <h2 class="question">What needs forgiveness today?</h2>
+            </div>
+
+            <% 2.times do %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-spa h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control form-control-lg" arialabel="Forgiveness"></textarea>
+                    </div>
+                </div>
+            <% end %>
+
+        </div>
+
+        <div class="h-75" data-aos="fade-up">
+
+            <div class="w-100 pb-2">
+                <h2 class="question">What is your commitment for today?</h2>
+            </div>
+
+            <div class="d-flex flex-row align-items-center">
+                <i class="fas fa-burn h3 pr-4"></i>
+                <div class="form-group w-100">
+                    <textarea name="journal[commitment]" class="form-control form-control-lg" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' arialabel="commitment"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="h-75" class="form-group">
             <button class="btn btn-primary" type="submit">Submit</button>
         </div>
 
