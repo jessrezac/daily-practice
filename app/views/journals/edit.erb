@@ -1,84 +1,108 @@
 <% @title = "Edit #{@journal.title} | Daily Practice" %>
 
-<form action="/journals/<%= @journal.id %>" method="post">
-    <input id="hidden" type="hidden" name="_method" value="patch">
-    <div class="form-group">
-        <label for="text">Title</label>
-        <input class="form-control form-control-lg" type="text" name="journal[title]" id="title" value="<%= @journal.title %>">
-    </div>
-    <div class="form-group">
-        <label for="text">Date</label>
-        <input class="form-control form-control-lg" type="text" name="journal[date]" id="date"  value="<%= @journal.date %>">
-    </div>
+<div id="editor" class="container">
 
-    <!-- begin FreeWrite -->
-
-    <div class="form-group">
-        <label for="text">Free-Writing</label>
-        <textarea class="form-control form-control-lg" name="journal[content]" id="content" cols="30" rows="10"><%= @journal.content %></textarea>
-    </div>
-
-    <!-- begin Gratitude -->
-    
-    <% @journal.gratitudes.each do |gratitude| %>
-        <div class="form-group">
-            <input type="hidden" name="journal[gratitudes][][id]" value="<%= gratitude.id %>">
-            <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"><%= gratitude.content %></textarea>
+    <form action="/journals/<%= @journal.id %>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="patch">
+        <div class="h-75" data-aos="fade-up">
+            <h2 class="question">What is on your mind today?</h2>
+            <div id="title" class="d-flex flex-row w-100 justify-content-between align-items-center">
+                <div class="flex-grow-1 w-75 form-group">            
+                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" value="<%= @journal.title %>" aria-label="Title">
+            </div>
+            <div class="form-group pl-2 w-25">
+                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date"  value="<%= @journal.date %>" aria-label="Date">
+            </div>
+            <div id="freewrite" class="d-flex flex-row align-items-center">
+                <div class="form-group w-100">
+                    <textarea class="form-control h-100 border-0" rows="10" cols="30" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing" placeholder="Take a moment to journal."><%= @journal.content%></textarea>
+                </div>
+            </div>
         </div>
-    <% end %>
-    
-    <% empty_gratitudes = 3 - @journal.gratitudes.count %>
 
-    <% empty_gratitudes.times do %>
-        <div class="form-group">
-            <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"></textarea>
+        <!-- begin Gratitude -->
+        <div class="h-75" data-aos="fade-up">
+            <h2 class="question">What are you grateful for today?</h2>
+        
+            <% @journal.gratitudes.each do |gratitude| %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-heart h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <input type="hidden" name="journal[gratitudes][][id]" value="<%= gratitude.id %>">
+                        <textarea class="form-control form-control-lg border-0" name="journal[gratitudes][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Gratitude"><%= gratitude.content %></textarea>
+                    </div>
+                </div>
+            <% end %>
+        
+            <% empty_gratitudes = 3 - @journal.gratitudes.count %>
+
+            <% empty_gratitudes.times do %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-heart h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <textarea class="form-control form-control-lg border-0" name="journal[gratitudes][][content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' cols="30" rows="2" aria-label="Gratitude"></textarea>
+                    </div>
+                </div>
+            <% end %>
         </div>
-    <% end %>
 
-    <!-- begin Forgiveness -->
+        <!-- begin Forgiveness -->
+        <div class="h-50" data-aos="fade-up">
+            <h2 class="question">What needs forgiveness today?</h2>
 
-    <% @journal.forgivenesses.each do |forgiveness| %>
-        <div class="form-group">
-            <input type="hidden" name="journal[forgivenesses][][id]" value="<%= forgiveness.id %>">
-            <label for="forgiveness">Forgiveness</label>
-            <textarea class="form-control form-control-lg" name="journal[forgivenesses][][content]" cols="30" rows="2"><%= forgiveness.content %></textarea>
+            <% @journal.forgivenesses.each do |forgiveness| %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-spa h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <input type="hidden" name="journal[forgivenesses][][id]" value="<%= forgiveness.id %>">
+                        <textarea class="form-control form-control-lg border-0" name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Forgiveness"><%= forgiveness.content %></textarea>
+                    </div>
+                </div>
+            <% end %>
+
+            <% empty_forgivenesses = 2 - @journal.forgivenesses.count %>
+
+            <% empty_forgivenesses.times do %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-spa h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control form-control-lg border-0" arialabel="Forgiveness"></textarea>
+                    </div>
+                </div>
+            <% end %>
+
         </div>
-    <% end %>
 
-    <% empty_forgivenesses = 2 - @journal.forgivenesses.count %>
+        <!-- begin Commitment -->
+        <div class="h-25" data-aos="fade-up">
 
-    <% empty_forgivenesses.times do %>
+            <h2 class="question">What is your commitment for today?</h2>
+
+            <% @journal.commitments.each do |commitment| %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-burn h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <input type="hidden" name="journal[commitment][id]" value="<%= commitment.id %>">
+                        <textarea class="form-control form-control-lg border-0" name="journal[commitment][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Commitment"><%= commitment.content %></textarea>
+                </div>
+            <% end %>
+
+            <% empty_commitments = 1 - @journal.commitments.count %>
+
+            <% empty_commitments.times do %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-burn h3 pr-4"></i>
+                    <div class="form-group w-100">
+                        <textarea name="journal[commitment]" class="form-control form-control-lg border-0" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' arialabel="commitment"></textarea>
+                    </div>
+                </div>
+            <% end %>
+
+        <!-- Submit -->
+
+
         <div class="form-group">
-            <label for="forgiveness">Forgiveness</label>
-            <textarea class="form-control form-control-lg" name="journal[forgivenesses][][content]" cols="30" rows="2"></textarea>
+            <button class="btn btn-primary" type="submit">Update</button>
         </div>
-    <% end %>
-
-    <!-- begin Commitment -->
-    
-    <% @journal.commitments.each do |commitment| %>
-        <div class="form-group">
-            <input type="hidden" name="journal[commitment][id]" value="<%= commitment.id %>">
-            <label for="commitment">Commitment</label>
-            <textarea class="form-control form-control-lg" name="journal[commitment][content]" cols="30" rows="2"><%= commitment.content %></textarea>
-        </div>
-    <% end %>
-
-    <% empty_commitments = 1 - @journal.commitments.count %>
-
-    <% empty_commitments.times do %>
-        <div class="form-group">
-            <label for="commitment">Commitment</label>
-            <textarea class="form-control form-control-lg" name="journal[commitment][content]" cols="30" rows="2"></textarea>
-        </div>
-    <% end %>
-
-    <!-- Submit -->
-
-
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">Update</button>
-    </div>
-</form>
+    </form>
+</div>
