@@ -16,7 +16,7 @@
             </div>
             <div id="freewrite" class="d-flex flex-row align-items-center">
                 <div class="form-group w-100">
-                    <textarea class="form-control h-100" rows="10" cols="30" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing" placeholder="Take a moment to journal."></textarea>
+                    <textarea class="form-control h-100 border-0" rows="10" cols="30" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing" placeholder="Take a moment to journal."></textarea>
                 </div>
             </div>
         </div>
@@ -29,14 +29,14 @@
             <div class="d-flex flex-row align-items-center">
                 <i class="fas fa-heart h3 pr-4"></i>
                 <div class="form-group w-100">
-                    <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' cols="30" rows="2" arialabel="Gratitude"></textarea>
+                    <textarea class="form-control form-control-lg border-0" name="journal[gratitudes][][content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' cols="30" rows="2" arialabel="Gratitude"></textarea>
                 </div>
             </div>
             
             <% end %>
         </div>
 
-        <div class="h-75" data-aos="fade-up">
+        <div class="h-50" data-aos="fade-up">
 
             <div class="w-100 pb-2">
                 <h2 class="question">What needs forgiveness today?</h2>
@@ -46,14 +46,14 @@
                 <div class="d-flex flex-row align-items-center">
                     <i class="fas fa-spa h3 pr-4"></i>
                     <div class="form-group w-100">
-                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control form-control-lg" arialabel="Forgiveness"></textarea>
+                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control form-control-lg border-0" arialabel="Forgiveness"></textarea>
                     </div>
                 </div>
             <% end %>
 
         </div>
 
-        <div class="h-75" data-aos="fade-up">
+        <div class="h-25" data-aos="fade-up">
 
             <div class="w-100 pb-2">
                 <h2 class="question">What is your commitment for today?</h2>
@@ -62,7 +62,7 @@
             <div class="d-flex flex-row align-items-center">
                 <i class="fas fa-burn h3 pr-4"></i>
                 <div class="form-group w-100">
-                    <textarea name="journal[commitment]" class="form-control form-control-lg" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' arialabel="commitment"></textarea>
+                    <textarea name="journal[commitment]" class="form-control form-control-lg border-0" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' arialabel="commitment"></textarea>
                 </div>
             </div>
 
