@@ -1,17 +1,17 @@
 <% @title = "Edit #{@journal.title} | Daily Practice" %>
 
 <div id="editor" class="container">
-
     <form action="/journals/<%= @journal.id %>" method="post">
         <input id="hidden" type="hidden" name="_method" value="patch">
         <div class="h-75" data-aos="fade-up">
             <h2 class="question">What is on your mind today?</h2>
             <div id="title" class="d-flex flex-row w-100 justify-content-between align-items-center">
                 <div class="flex-grow-1 w-75 form-group">            
-                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" value="<%= @journal.title %>" aria-label="Title">
-            </div>
-            <div class="form-group pl-2 w-25">
-                <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date"  value="<%= @journal.date %>" aria-label="Date">
+                    <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" value="<%= @journal.title %>" aria-label="Title">
+                </div>
+                <div class="form-group pl-2 w-25">
+                    <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date"  value="<%= @journal.date %>" aria-label="Date">
+                </div>
             </div>
             <div id="freewrite" class="d-flex flex-row align-items-center">
                 <div class="form-group w-100">
