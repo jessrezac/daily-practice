@@ -26,8 +26,9 @@ $dark:              $onyx;
 
 $font-family-sans-serif: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 $font-family-serif: "Lora", serif;
-$font-family-display: "Oxygen", sans-serif;
+$font-family-display: "Nunito", sans-serif;
 $headings-font-family: $font-family-display;
+$headings-font-weight: 300;
 
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";

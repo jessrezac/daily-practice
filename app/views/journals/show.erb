@@ -1,40 +1,54 @@
     <% @title = "#{@journal.title}  | Daily Practice" %>
 
 
-    <h1><%= @journal.title %></h2>
-    <p><em><%= @journal.date %></em></p>
-    <p><%= break_lines(@journal.content) %></p>
+<div id="post" class="container d-flex flex-wrap align-space-between">
+    <div class="jumbotron bg-primary w-75">
+        <h1><%= @journal.title %></h2>
+        <p><em><%= @journal.date %></em></p>
+        <p><%= break_lines(@journal.content) %></p>
+    </div>
 
-    <% if @gratitudes.count > 0 %>
-        <p>Today I'm grateful for...</p>
-        <ul>
-            <% @gratitudes.each do |gratitude| %>
-                <li><%= break_lines(gratitude.content) %></li>
-            <% end %>
-        </ul>
-    <% end %>
+    <div class="d-flex flex-column">
+        <% if @gratitudes.count > 0 %>
+            <div class="jumbotron bg-secondary">
+                <p>Gratitude</p>
+                <ul>
+                    <% @gratitudes.each do |gratitude| %>
+                        <li><%= break_lines(gratitude.content) %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
 
-    <% if @forgivenesses.count > 0 %>
-        <p>Today I forgive...</p>
-        <ul>
-            <% @forgivenesses.each do |forgiveness| %>
-                <li><%= break_lines(forgiveness.content) %></li>
-            <% end %>
-        </ul>
-    <% end %>
+        <% if @forgivenesses.count > 0 %>
+            <div class="jumbotron bg-success">
+                <p>Forgiveness</p>
+                <ul>
+                    <% @forgivenesses.each do |forgiveness| %>
+                        <li><%= break_lines(forgiveness.content) %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
 
-    <% if @commitments.count > 0 %>
-        <p>Today I commit...</p>
-        <ul>
-            <% @commitments.each do |commitment| %>
-                <li><%= break_lines(commitment.content) %></li>
-            <% end %>
-        </ul>
-    <% end %>
+        <% if @commitments.count > 0 %>
+            <div class="jumbotron bg-warning">
+                <p>Commitment</p>
+                <ul>
+                    <% @commitments.each do |commitment| %>
+                        <li><%= break_lines(commitment.content) %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+    </div>
 
+</div>
 
+<div class="container">
     <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
     <form action="/journals/<%= @journal.id %>" method="post">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
     </form>
+</div>
