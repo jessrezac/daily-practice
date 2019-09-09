@@ -1,14 +1,25 @@
 <% @title = "Your Journals | Daily Practice" %>
 
-<p>Your journals</p>
-<ul>
+<div id="journals" class="container">
 
-    <% @journals.each do |journal| %>
-        <li> 
-            <h2><a href="/journals/<%= journal.id %>"><%= journal.title %></a></h2>
-            <p><em><%= journal.date %></em></p>
-            <p><%= break_lines(journal.content) %></p>
-        </li>
-    <% end %>
+    <div class="row">
 
-</ul>
+        <div class="col-12">
+            <h1>Revisit Your Practices</h1>
+        </div>
+    
+    </div>
+
+    <div class="row">
+
+        <div class="col-12 d-flex flex-wrap flex-fill">
+            <% @journals.each do |journal| %>
+                <div class="jumbotron bg-white">
+                    <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.date %> &raquo; <%= journal.title %></a></p>
+                </div>
+            <% end %>
+        </div>
+    
+    </div>
+
+</div>
