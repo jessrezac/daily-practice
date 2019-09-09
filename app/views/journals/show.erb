@@ -1,54 +1,67 @@
     <% @title = "#{@journal.title}  | Daily Practice" %>
 
 
-<div id="post" class="container d-flex flex-wrap align-space-between">
-    <div class="jumbotron bg-primary w-75">
-        <h1><%= @journal.title %></h2>
-        <p><em><%= @journal.date %></em></p>
-        <p><%= break_lines(@journal.content) %></p>
+<div id="post" class="container">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="jumbotron bg-primary">
+                <h1 class="display-4"><%= @journal.title %></h1>
+                <p class="lead"><%= @journal.date %></p>
+            </div>
+        </div>
     </div>
 
-    <div class="d-flex flex-column">
-        <% if @gratitudes.count > 0 %>
-            <div class="jumbotron bg-secondary">
-                <p>Gratitude</p>
-                <ul>
-                    <% @gratitudes.each do |gratitude| %>
-                        <li><%= break_lines(gratitude.content) %></li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
+    <div class="row">
+        <div class="col-md-8">
+            <p><%= break_lines(@journal.content) %></p>
+        </div>
+        <div class="col-md-4">
+            <div class="d-flex flex-column">
+                <% if @gratitudes.count > 0 %>
+                    <div class="jumbotron bg-secondary">
+                        <p>Gratitude</p>
+                        <ul>
+                            <% @gratitudes.each do |gratitude| %>
+                                <li><%= break_lines(gratitude.content) %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
 
-        <% if @forgivenesses.count > 0 %>
-            <div class="jumbotron bg-success">
-                <p>Forgiveness</p>
-                <ul>
-                    <% @forgivenesses.each do |forgiveness| %>
-                        <li><%= break_lines(forgiveness.content) %></li>
-                    <% end %>
-                </ul>
-            </div>
-        <% end %>
+                <% if @forgivenesses.count > 0 %>
+                    <div class="jumbotron bg-success">
+                        <p>Forgiveness</p>
+                        <ul>
+                            <% @forgivenesses.each do |forgiveness| %>
+                                <li><%= break_lines(forgiveness.content) %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
 
-        <% if @commitments.count > 0 %>
-            <div class="jumbotron bg-warning">
-                <p>Commitment</p>
-                <ul>
-                    <% @commitments.each do |commitment| %>
-                        <li><%= break_lines(commitment.content) %></li>
-                    <% end %>
-                </ul>
+                <% if @commitments.count > 0 %>
+                    <div class="jumbotron bg-warning">
+                        <p>Commitment</p>
+                        <ul>
+                            <% @commitments.each do |commitment| %>
+                                <li><%= break_lines(commitment.content) %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                <% end %>
             </div>
-        <% end %>
+        </div>
     </div>
 
-</div>
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
+            <form action="/journals/<%= @journal.id %>" method="post">
+                <input id="hidden" type="hidden" name="_method" value="delete">
+                <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
 
-<div class="container">
-    <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
-    <form action="/journals/<%= @journal.id %>" method="post">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
-    </form>
 </div>
