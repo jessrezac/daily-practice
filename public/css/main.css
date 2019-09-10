@@ -361,7 +361,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: "Cormorant Garamond", serif;
   font-weight: 700;
   line-height: 1.2;
-  color: inherit;
+  color: #524632;
 }
 
 h1, .h1 {
@@ -4972,7 +4972,7 @@ button.close {
   padding: 0.5rem 0.75rem;
   margin-bottom: 0;
   font-size: 0.9rem;
-  color: inherit;
+  color: #524632;
   background-color: #f5efeb;
   border-bottom: 1px solid #ece1da;
   border-top-left-radius: calc(0.3rem - 1px);
@@ -8277,6 +8277,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   background-repeat: no-repeat;
   padding-left: 8rem;
   padding-top: 8rem;
+}
+
+.leaf-12 {
+  background-image: url("../images/yellow-botanical-12.png");
+  background-size: contain;
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 4rem;
 }
 
 .leaf-19 {
