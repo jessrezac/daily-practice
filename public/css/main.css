@@ -168,7 +168,7 @@ a {
 }
 a:hover {
   color: #6e783d;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not([href]):not([tabindex]) {
@@ -2659,12 +2659,12 @@ fieldset:disabled a.btn {
 }
 .btn-link:hover {
   color: #6e783d;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
   border-color: transparent;
 }
 .btn-link:focus, .btn-link.focus {
-  text-decoration: underline;
+  text-decoration: none;
   border-color: transparent;
   box-shadow: none;
 }
