@@ -8255,6 +8255,13 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* backgrounds */
+.leaf-1 {
+  background-image: url("../images/yellow-botanical-1.png");
+  background-size: 9rem;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+
 .leaf-2 {
   background-image: url("../images/yellow-botanical-2.png");
   background-size: 8rem;
@@ -8263,11 +8270,28 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   padding-left: 5rem;
 }
 
+.leaf-5 {
+  background-image: url("../images/yellow-botanical-5.png");
+  background-size: contain;
+  background-position: top left;
+  background-repeat: no-repeat;
+  padding-left: 8rem;
+  padding-top: 8rem;
+}
+
 .leaf-19 {
   background-image: url("../images/yellow-botanical-19.png");
   background-size: contain;
   background-position: right;
   background-repeat: no-repeat;
+}
+
+.leaf-24 {
+  background-image: url("../images/yellow-botanical-24.png");
+  background-size: 10rem;
+  background-position: right;
+  background-repeat: no-repeat;
+  padding-right: 8rem;
 }
 
 /*# sourceMappingURL=main.css.map */
