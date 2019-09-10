@@ -8250,6 +8250,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-style: italic;
 }
 
+#journals ul {
+  list-style: none;
+}
+
 /* backgrounds */
 .leaf-2 {
   background-image: url("../images/yellow-botanical-2.png");
