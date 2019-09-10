@@ -5,26 +5,26 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
-@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:500,500i|Montserrat:400,500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Garamond:700,700i|Montserrat:400,500&display=swap');
 
-$white:    #e8e9ed;
-$black:    #313638;
+$white:    #faf7f5;
+$black:    #2e2e2e;
 
-$mustard:      #ffc759;
-$french-pink:      #ff7b9c;
-$dark-blue-gray:  #607196;
-$lavender-gray: #babfd1;
-$glitter:   #e8e9ed;
+$satin-sheen-gold:      #cca43b;
+$dark-liver:      #524632;
+$turtle-green:  #9caa57;
+$charleston-green: #2e2e2e;
+$white-smoke:   #faf7f5;
 $onyx:  #313638;
 
-$primary:   $dark-blue-gray;
-$secondary:     $lavender-gray;
-$success:   $french-pink;
-$info:    $mustard;
-$warning:   $mustard;
-$danger:    $french-pink;
+$primary:   $turtle-green;
+$secondary:     $dark-liver;
+$success:   $dark-liver;
+$info:    $turtle-green;
+$warning:   $satin-sheen-gold;
+$danger:    $satin-sheen-gold;
 $light:  #fff;
-$dark:    $onyx;
+$dark:    $charleston-green;
 
 $font-size-base: 12px; // this changes the font-size throughout bootstrap
 $font-size-base: 0.9rem;
@@ -33,7 +33,7 @@ $font-family-sans-serif: "Montserrat", "Segoe UI", Roboto, "Helvetica Neue", Ari
 $font-family-serif: 'Cormorant Garamond', serif;
 $font-family-display: 'Cormorant Garamond', serif;
 $headings-font-family: $font-family-display;
-$headings-font-weight: 500;
+$headings-font-weight: 700;
 
 $font-size-h1:  floor(($font-size-base * 1.5)) !default; // ~36px
 $font-size-h2:  floor(($font-size-base * 1.35)) !default; // ~30px
