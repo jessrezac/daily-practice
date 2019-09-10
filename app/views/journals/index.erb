@@ -12,11 +12,12 @@
 
     <div class="row">
 
-        <div class="col-12 d-flex flex-wrap flex-fill">
-            <% @journals.each do |journal| %>
-                <div class="jumbotron bg-white">
-                    <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.date %> &raquo; <%= journal.title %></a></p>
-                </div>
+        <div class="leaf-2 col-12 d-flex flex-wrap flex-fill">
+            <ul>
+                <% @journals.each do |journal| %>
+                <li>
+                    <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.created_at.strftime('%A, %b. %d %Y') %> &bull; <%= journal.title %></a></p>
+                </li>
             <% end %>
         </div>
     

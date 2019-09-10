@@ -8250,4 +8250,20 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-style: italic;
 }
 
+/* backgrounds */
+.leaf-2 {
+  background-image: url("../images/yellow-botanical-2.png");
+  background-size: 8rem;
+  background-position: top left;
+  background-repeat: no-repeat;
+  padding-left: 5rem;
+}
+
+.leaf-19 {
+  background-image: url("../images/yellow-botanical-19.png");
+  background-size: contain;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
 /*# sourceMappingURL=main.css.map */
