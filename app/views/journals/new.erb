@@ -2,19 +2,19 @@
 
 <div id="editor" class="container">
     <form action="/journals" method="post">
-        <div class="h-75 leaf-5" data-aos="fade-up">
+        <div class="h-75 leaf-17" data-aos="fade-up">
             <h2 class="question">What is on your mind today?</h2>
             <div id="title" class="d-flex flex-row flex-wrap w-100 justify-content-between align-items-center">
-                <div class="flex-grow-1 w-75 form-group">
-                    <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" placeholder="Title" aria-label="Title">
+                <div class="form-group col-md-8 col-sm-12">
+                    <input class="form-control form-control-lg w-100 border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" placeholder="Title" aria-label="Title">
                 </div>
-                <div class="form-group pl-2 w-25">
-                    <input class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>" aria-label="Date">
+                <div class="form-group pl-2 col-md-4 col-sm-12">
+                    <input class="form-control form-control-lg w-100 border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>" aria-label="Date">
                 </div>
             </div>
             <div id="freewrite" class="d-flex flex-row align-items-center">
                 <div class="form-group w-100">
-                    <textarea class="form-control h-100 border-0" rows="10" cols="30" id="content" name="journal[content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' aria-label="Free Writing" placeholder="Take a moment to journal."></textarea>
+                    <textarea class="form-control h-100 border border-right-0 border-left-0 border-top-0 border-primary" rows="10" cols="30" id="content" name="journal[content]" aria-label="Free Writing" placeholder="Take a moment to journal."></textarea>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="d-flex flex-row align-items-center">
                 <i class="fas fa-heart h3 pr-4 text-primary"></i>
                 <div class="form-group w-100">
-                    <textarea class="form-control form-control-lg border-0" name="journal[gratitudes][][content]" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' cols="30" rows="2" aria-label="Gratitude"></textarea>
+                    <textarea class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" name="journal[gratitudes][][content]" cols="30" rows="2" aria-label="Gratitude"></textarea>
                 </div>
             </div>
             
@@ -40,7 +40,7 @@
                 <div class="d-flex flex-row align-items-center">
                     <i class="fas fa-spa h3 pr-4 text-primary"></i>
                     <div class="form-group w-100">
-                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' class="form-control form-control-lg border-0" arialabel="Forgiveness"></textarea>
+                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" arialabel="Forgiveness"></textarea>
                     </div>
                 </div>
             <% end %>
@@ -54,7 +54,7 @@
             <div class="d-flex flex-row align-items-center">
                 <i class="fas fa-burn h3 pr-4 text-primary"></i>
                 <div class="form-group w-100">
-                    <textarea name="journal[commitment]" class="form-control form-control-lg border-0" cols="30" rows="2" oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"' arialabel="commitment"></textarea>
+                    <textarea name="journal[commitment]" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" cols="30" rows="2" arialabel="commitment"></textarea>
                 </div>
             </div>
 

@@ -23,6 +23,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         background-size: 9rem;
         background-position: bottom center;
         background-repeat: no-repeat;
+        margin-bottom: 1rem;
 }
 
 .leaf-2 {
@@ -49,6 +50,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
         background-repeat: no-repeat;
         padding-left: 4rem;        
 }
+
+.leaf-17 {
+        background-image: url("../images/yellow-botanical-17.png");
+        background-size: contain;
+        background-position: left;
+        background-repeat: no-repeat;
+        padding-left:8rem;
+}
+
 .leaf-19 { 
         background-image: url("../images/yellow-botanical-19.png");
         background-size: contain;
