@@ -3,65 +3,53 @@
 
 <div id="post" class="container">
 
-    <div class="row">
-        <div class="col-12">
-            <div class="jumbotron bg-primary">
-                <h1 class="display-4"><%= @journal.title %></h1>
-                <p class="lead"><%= @journal.date %></p>
-            </div>
-        </div>
+    <div class="jumbotron bg-primary">
+        <h1 class="display-4"><%= @journal.title %></h1>
+        <p class="lead"><%= @journal.date.strftime("%b. %d, %Y") %></p>
     </div>
 
-    <div class="row">
-        <div class="col-md-8">
-            <p><%= break_lines(@journal.content) %></p>
-        </div>
-        <div class="col-md-4">
-            <div class="d-flex flex-column">
-                <% if @gratitudes.count > 0 %>
-                    <div class="jumbotron bg-secondary">
-                        <p>Gratitude</p>
-                        <ul>
-                            <% @gratitudes.each do |gratitude| %>
-                                <li><%= break_lines(gratitude.content) %></li>
-                            <% end %>
-                        </ul>
-                    </div>
-                <% end %>
+    <p><%= break_lines(@journal.content) %></p>
 
-                <% if @forgivenesses.count > 0 %>
-                    <div class="jumbotron bg-success">
-                        <p>Forgiveness</p>
-                        <ul>
-                            <% @forgivenesses.each do |forgiveness| %>
-                                <li><%= break_lines(forgiveness.content) %></li>
-                            <% end %>
-                        </ul>
-                    </div>
+    <% if @gratitudes.count > 0  %>
+        <div id="gratitudes" class="pt-4">
+            <h2>Gratitude</h2>
+            <ul class="list-group">
+                <% @gratitudes.each do |gratitude| %>
+                    <li class="list-group-item"><%= break_lines(gratitude.content) %></li>
                 <% end %>
+            </ul>
+        </div>
+    <% end %>
 
-                <% if @commitments.count > 0 %>
-                    <div class="jumbotron bg-warning">
-                        <p>Commitment</p>
-                        <ul>
-                            <% @commitments.each do |commitment| %>
-                                <li><%= break_lines(commitment.content) %></li>
-                            <% end %>
-                        </ul>
-                    </div>
+    <% if @forgivenesses.count > 0  %>
+        <div id="forgivenesses" class="pt-4">
+            <h2>Forgiveness</h2>
+            <ul class="list-group">
+                <% @forgivenesses.each do |forgiveness| %>
+                    <li class="list-group-item"><%= break_lines(forgiveness.content) %></li>
                 <% end %>
-            </div>
+            </ul>
         </div>
-    </div>
+    <% end %>
 
-    <div class="row">
-        <div class="col-12">
-            <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
-            <form action="/journals/<%= @journal.id %>" method="post">
-                <input id="hidden" type="hidden" name="_method" value="delete">
-                <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
-            </form>
+    <% if @commitments.count > 0 %>
+        <div id="commitments" class="pt-4">
+            <h2>Commitment</h2>
+            <ul class="list-group">
+                <% @commitments.each do |commitment| %>
+                    <li class="list-group-item"><%= break_lines(commitment.content) %></li>
+                <% end %>
+            </ul>
         </div>
+    <% end %>
+
+
+    <div class="pt-4">
+        <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
+        <form action="/journals/<%= @journal.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
+        </form>
     </div>
 
 </div>
