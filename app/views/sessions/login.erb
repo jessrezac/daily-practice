@@ -4,7 +4,14 @@
     <div class="row text-center">
         <div class="col-md-3">&nbsp;</div>
         <div class="col-md-6 bg-light jumbotron text-center border border-primary">
-            <h2 class="mb-3">Log In</h2>
+            <h1 class="mb-3">Log In</h1>
+
+            <% if @message %>
+                <p class="text-danger">
+                    <%= @message %>
+                </p>
+            <% end %>
+            
             <form action="/login" method="post">
 
                 <div class="form-group">
