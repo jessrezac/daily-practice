@@ -29,7 +29,7 @@ class JournalController < ApplicationController
         @gratitudes = @journal.gratitudes
         @forgivenesses = @journal.forgivenesses
         @commitments = @journal.commitments
-        erb :'journals/show'
+        erb :'journals/show', :layout => :noheader
     end
 
     get '/journals/:id/edit' do
