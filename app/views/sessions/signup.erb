@@ -1,9 +1,20 @@
 <% @title = "Sign-Up and Begin Your Practice | Daily Practice" %>
 
-<div class="container mt-5">
+<div class="container mt-3">
     <div class="row text-center">
         <div class="col-md-3">&nbsp;</div>
         <div class="col-md-6 bg-light jumbotron text-center border border-primary">
+
+        <h1>Begin Your Daily Practice</h1>
+
+        <% if @messages %>
+            <p class="text-warning">
+                <% @messages.each do |message|%>
+                    <%= "#{message.capitalize}." %><br>
+                <% end %>
+            </p>
+        <% end %>
+
             <form action="/signup" method="post">
 
                 <div class="form-group">
