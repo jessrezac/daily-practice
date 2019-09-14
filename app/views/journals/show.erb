@@ -5,7 +5,7 @@
 
     <div class="jumbotron bg-primary">
         <h1 class="display-4"><%= @journal.title %></h1>
-        <p class="lead"><%= @journal.date.strftime("%b. %d, %Y") %></p>
+        <p class="lead"><%= @journal.date.strftime("%b. %d, %Y") if @journal.date %></p>
     </div>
 
     <p><%= break_lines(@journal.content) %></p>
