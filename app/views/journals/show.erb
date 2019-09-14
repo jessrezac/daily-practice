@@ -52,6 +52,14 @@
         </div>
     <% end %>
 
+    <div class="row pt-4">
+        <div class="col-6 text-left">
+            <a href="<%= @journal.prev.id %>" tabindex="-1">&laquo; Previous</a>
+        </div>
+        <div class="col-6 text-right">
+            <a href="<%= @journal.next.id %>" >Next &raquo;</a>
+        </div>
+    </div>
 
     <div class="pt-4">
         <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
@@ -60,5 +68,6 @@
             <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
         </form>
     </div>
+
 
 </div>
