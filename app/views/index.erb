@@ -1,3 +1,24 @@
-<% @title = "Daily Practice | A tiny journal for your gratitude, atonement, and commitment" %>
+<% @title = "Daily Practice | A gratitude, forgiveness, and commitment journal" %>
 
-<p>Welcome to Daily Practice</p>
+<div class="d-flex align-content-center flex-wrap h-75 pl-5 leaf-19">
+    <main role="main" class="inner cover">
+        <h1>Daily Practice</h1>
+        <p class="lead">
+            A journal for gratitude, forgiveness, commitment
+        </p>
+
+        <% if is_logged_in? %>
+            <p class="lead">
+                <a href="/journals" class="btn btn-lg btn-primary">Continue Your Practice</a>
+                <a href="/logout" class="btn btn-lg btn-secondary">Log Out</a>
+            </p>
+        <% else %>
+            <p class="lead">
+                <a href="/signup" class="btn btn-lg btn-primary">Sign Up</a>
+                <a href="/login" class="btn btn-lg btn-secondary">Log In</a>
+            </p>
+        <% end %>
+
+    </main>
+</div>
+

@@ -1,40 +1,73 @@
 <% @title = "Today's Practice | Daily Practice" %>
 
-<form action="/journals" method="post">
-
-    <div class="form-group">
-        <label for="text">Title</label>
-        <input class="form-control form-control-lg" type="text" name="journal[title]" id="title">
-    </div>
-    <div class="form-group">
-        <label for="text">Date</label>
-        <input class="form-control form-control-lg" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>">
-    </div>
-    <div class="form-group">
-        <label for="text">Free-Writing</label>
-        <textarea class="form-control form-control-lg" name="journal[content]" id="content" cols="30" rows="10"></textarea>
-    </div>
-    
-    <% 3.times do %>
-        <div class="form-group">
-            <label for="gratitude">Gratitude</label>
-            <textarea class="form-control form-control-lg" name="journal[gratitudes][][content]" cols="30" rows="2"></textarea>
+<div id="editor" class="container">
+    <form action="/journals" method="post">
+        <div class="h-75 leaf-17" data-aos="fade-up">
+            <h2 class="question">What is on your mind today?</h2>
+            <div id="title" class="d-flex flex-row flex-wrap w-100 justify-content-between align-items-center">
+                <div class="form-group col-md-8 col-sm-12">
+                    <input class="form-control form-control-lg w-100 border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[title]" id="title" placeholder="Title" aria-label="Title">
+                </div>
+                <div class="form-group pl-2 col-md-4 col-sm-12">
+                    <input class="form-control form-control-lg w-100 border border-right-0 border-left-0 border-top-0 border-primary" type="text" name="journal[date]" id="date" value="<%= DateTime.now.strftime("%m/%d/%Y") %>" aria-label="Date">
+                </div>
+            </div>
+            <div id="freewrite" class="d-flex flex-row align-items-center">
+                <div class="form-group w-100">
+                    <textarea class="form-control h-100 border border-right-0 border-left-0 border-top-0 border-primary" rows="10" cols="30" id="content" name="journal[content]" aria-label="Free Writing" placeholder="Take a moment to journal."></textarea>
+                </div>
+            </div>
         </div>
-    <% end %>
 
-    <% 2.times do %>
-        <div class="form-group">
-            <label for="forgiveness">Forgiveness</label>
-            <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" class="form-control form-control-lg"></textarea>
+        <!-- begin Gratitude -->
+        <div class="h-75 leaf-24" data-aos="fade-up">
+            <h2 class="question">What are you grateful for today?</h2>
+            
+            <% 3.times do %>
+            <div class="d-flex flex-row align-items-center">
+                <i class="fas fa-heart h3 pr-4 text-primary"></i>
+                <div class="form-group w-100">
+                    <textarea class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" name="journal[gratitudes][][content]" cols="30" rows="2" aria-label="Gratitude"></textarea>
+                </div>
+            </div>
+            
+            <% end %>
         </div>
-    <% end %>
 
-    <div class="form-group">
-        <label for="commitment">Commitment</label>
-        <textarea name="journal[commitment]" cols="30" rows="2" class="form-control form-control-lg"></textarea>
-    </div>
+        <!-- begin Forgiveness -->
+        <div class="h-50 leaf-1" data-aos="fade-up">
 
-    <div class="form-group">
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </div>
-</form>
+            <h2 class="question">What needs forgiveness today?</h2>
+
+            <% 2.times do %>
+                <div class="d-flex flex-row align-items-center">
+                    <i class="fas fa-spa h3 pr-4 text-primary"></i>
+                    <div class="form-group w-100">
+                        <textarea name="journal[forgivenesses][][content]" cols="30" rows="2" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" arialabel="Forgiveness"></textarea>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+        <!-- begin Commitment -->
+        <div class="h-50 leaf-12" data-aos="fade-up">
+
+            <h2 class="question">What is your commitment for today?</h2>
+
+            <div class="d-flex flex-row align-items-center">
+                <i class="fas fa-burn h3 pr-4 text-primary"></i>
+                <div class="form-group w-100">
+                    <textarea name="journal[commitment]" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" cols="30" rows="2" arialabel="commitment"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Submit -->
+
+        <div class="h-75" class="form-group">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>    

@@ -1,40 +1,73 @@
     <% @title = "#{@journal.title}  | Daily Practice" %>
 
 
-    <h1><%= @journal.title %></h2>
-    <p><em><%= @journal.date %></em></p>
+<div id="post" class="container">
+
+    <div class="pt-5">
+        <h1 class="h1"><%= @journal.title %></h1>
+        <p class="lead"><%= @journal.date.strftime("%b. %d, %Y") if @journal.date %></p>
+    </div>
+
     <p><%= break_lines(@journal.content) %></p>
 
-    <% if @gratitudes.count > 0 %>
-        <p>Today I'm grateful for...</p>
-        <ul>
-            <% @gratitudes.each do |gratitude| %>
-                <li><%= break_lines(gratitude.content) %></li>
-            <% end %>
-        </ul>
+    <% if @gratitudes.count > 0  %>
+        <div id="gratitudes" class="pt-4">
+            <h2>Gratitude</h2>
+            <ul class="list-group">
+                <% @gratitudes.each do |gratitude| %>
+                    <li class="list-group-item">
+                        <i class="fas fa-heart h3 pr-4 text-primary"></i>                       
+                        <%= break_lines(gratitude.content) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
 
-    <% if @forgivenesses.count > 0 %>
-        <p>Today I forgive...</p>
-        <ul>
-            <% @forgivenesses.each do |forgiveness| %>
-                <li><%= break_lines(forgiveness.content) %></li>
-            <% end %>
-        </ul>
+    <% if @forgivenesses.count > 0  %>
+        <div id="forgivenesses" class="pt-4">
+            <h2>Forgiveness</h2>
+            <ul class="list-group">
+                <% @forgivenesses.each do |forgiveness| %>
+                    <li class="list-group-item">
+                        <i class="fas fa-spa h3 pr-4 text-primary"></i>
+                        <%= break_lines(forgiveness.content) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
 
     <% if @commitments.count > 0 %>
-        <p>Today I commit...</p>
-        <ul>
-            <% @commitments.each do |commitment| %>
-                <li><%= break_lines(commitment.content) %></li>
-            <% end %>
-        </ul>
+        <div id="commitments" class="pt-4">
+            <h2>Commitment</h2>
+            <ul class="list-group">
+                <% @commitments.each do |commitment| %>
+                    <li class="list-group-item">
+                        <i class="fas fa-burn h3 pr-4 text-primary"></i>
+                        <%= break_lines(commitment.content) %>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
     <% end %>
 
+    <div class="row pt-4">
+        <div class="col-6 text-left">
+            <a href="<%= @journal.prev.id %>" tabindex="-1">&laquo; Previous</a>
+        </div>
+        <div class="col-6 text-right">
+            <a href="<%= @journal.next.id %>" >Next &raquo;</a>
+        </div>
+    </div>
 
-    <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
-    <form action="/journals/<%= @journal.id %>" method="post">
-        <input id="hidden" type="hidden" name="_method" value="delete">
-        <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
-    </form>
+    <div class="pt-4">
+        <a class="btn btn-primary float-left mr-1" href="/journals/<%= @journal.id %>/edit" role="button">Edit</a>
+        <form action="/journals/<%= @journal.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <button class="btn btn-outline-secondary float-left mr-1" type="submit">Delete</button>
+        </form>
+    </div>
+
+
+</div>
