@@ -79,8 +79,8 @@
                 <div class="d-flex flex-row align-items-center">
                     <i class="fas fa-burn h3 pr-4"></i>
                     <div class="form-group w-100">
-                        <input type="hidden" name="journal[commitment][id]" value="<%= commitment.id %>">
-                        <textarea name="journal[commitment]" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" cols="30" rows="2" arialabel="commitment"><%= commitment.content %></textarea>
+                        <input type="hidden" name="journal[commitment][][id]" value="<%= commitment.id %>">
+                        <textarea name="journal[commitment][][content]" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" cols="30" rows="2" arialabel="commitment"><%= commitment.content %></textarea>
                     </div>
                 </div>
             <% end %>
@@ -91,7 +91,7 @@
                 <div class="d-flex flex-row align-items-center">
                     <i class="fas fa-burn h3 pr-4"></i>
                     <div class="form-group w-100">
-                        <textarea name="journal[commitment]" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" cols="30" rows="2" arialabel="commitment"></textarea>
+                        <textarea name="journal[commitment][][content]" class="form-control form-control-lg border border-right-0 border-left-0 border-top-0 border-primary" cols="30" rows="2" arialabel="commitment"></textarea>
                     </div>
                 </div>
             <% end %>

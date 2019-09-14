@@ -143,19 +143,21 @@ class JournalController < ApplicationController
         end
 
 
-        def update_commitment(details)
+        def update_commitment(commitments)
             # update commitment in database by replacing content or deleting object if content is empty
-            if details[:id]
-                commitment = Commitment.find(details[:id])
-                if details[:content] == ""
-                    commitment.delete
+            commitments.each do |details|
+                if details[:id]
+                    commitment = Commitment.find(details[:id])
+                    if details[:content] == ""
+                        commitment.delete
+                    else
+                        commitment.update(content: details[:content])
+                    end
                 else
-                    commitment.update(content: details[:content])
-                end
-            else
-                unless details[:content] == ""
-                    commitment = Commitment.create(content: details[:content])
-                    @journal.commitments << commitment
+                    unless details[:content] == ""
+                        commitment = Commitment.create(content: details[:content])
+                        @journal.commitments << commitment
+                    end
                 end
             end
         end
