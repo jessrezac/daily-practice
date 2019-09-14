@@ -26,10 +26,16 @@ class JournalController < ApplicationController
 
     get '/journals/:id' do
         @journal = Journal.find(params[:id])
-        @gratitudes = @journal.gratitudes
-        @forgivenesses = @journal.forgivenesses
-        @commitments = @journal.commitments
-        erb :'journals/show', :layout => :noheader
+        
+        if @journal.user == current_user
+            @gratitudes = @journal.gratitudes
+            @forgivenesses = @journal.forgivenesses
+            @commitments = @journal.commitments
+            erb :'journals/show', :layout => :noheader
+        else
+            redirect to '/journals'
+        end
+        
     end
 
     get '/journals/:id/edit' do
