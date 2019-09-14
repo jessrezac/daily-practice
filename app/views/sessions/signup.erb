@@ -10,7 +10,7 @@
         <% if @messages %>
             <p class="text-warning">
                 <% @messages.each do |message|%>
-                    <%= "#{message.capitalize}." %>
+                    <%= "#{message.capitalize}." %><br>
                 <% end %>
             </p>
         <% end %>
