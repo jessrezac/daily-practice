@@ -12,7 +12,10 @@ class SessionController < ApplicationController
             session[:user_id] = user.id
             redirect to '/journals'
         else
-            "failure"
+            @messages = user.errors.messages.map do |attribute, message|
+                "#{attribute} #{message[0]}"
+            end
+            erb :'sessions/signup', :layout => :noheader
         end
 
     end
