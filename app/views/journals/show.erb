@@ -3,8 +3,8 @@
 
 <div id="post" class="container">
 
-    <div class="jumbotron bg-primary">
-        <h1 class="display-4"><%= @journal.title %></h1>
+    <div class="pt-5">
+        <h1 class="h1"><%= @journal.title %></h1>
         <p class="lead"><%= @journal.date.strftime("%b. %d, %Y") if @journal.date %></p>
     </div>
 
@@ -15,7 +15,10 @@
             <h2>Gratitude</h2>
             <ul class="list-group">
                 <% @gratitudes.each do |gratitude| %>
-                    <li class="list-group-item"><%= break_lines(gratitude.content) %></li>
+                    <li class="list-group-item">
+                        <i class="fas fa-heart h3 pr-4 text-primary"></i>                       
+                        <%= break_lines(gratitude.content) %>
+                    </li>
                 <% end %>
             </ul>
         </div>
@@ -26,7 +29,10 @@
             <h2>Forgiveness</h2>
             <ul class="list-group">
                 <% @forgivenesses.each do |forgiveness| %>
-                    <li class="list-group-item"><%= break_lines(forgiveness.content) %></li>
+                    <li class="list-group-item">
+                        <i class="fas fa-spa h3 pr-4 text-primary"></i>
+                        <%= break_lines(forgiveness.content) %>
+                    </li>
                 <% end %>
             </ul>
         </div>
@@ -37,7 +43,10 @@
             <h2>Commitment</h2>
             <ul class="list-group">
                 <% @commitments.each do |commitment| %>
-                    <li class="list-group-item"><%= break_lines(commitment.content) %></li>
+                    <li class="list-group-item">
+                        <i class="fas fa-burn h3 pr-4 text-primary"></i>
+                        <%= break_lines(commitment.content) %>
+                    </li>
                 <% end %>
             </ul>
         </div>
