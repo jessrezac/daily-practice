@@ -24,6 +24,12 @@ class JournalController < ApplicationController
         redirect to "/journals/#{@journal.id}"
     end
 
+    post '/search' do
+        search = params[:search]
+        @journals = current_user.journals.where("content like ?", "%#{search}%")
+        erb :'/journals/index'
+    end
+
     get '/journals/:id' do
         @journal = Journal.find(params[:id])
         
