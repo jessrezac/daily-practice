@@ -2,36 +2,36 @@
 
 <div id="journals" class="container">
 
-    <div class="row text-center">
+    <div class="row pt-4">
 
-        <div class="col">
+        <div class="col-lg text-center">
+
+            <% if @random_gratitude %>
+                <blockquote class="blockquote mb-4">
+                    <p class="lead mb-0"><%= @random_gratitude.content %></p>
+                    <footer class="blockquote-footer">You were grateful on <%= @random_gratitude.journal.created_at.strftime('%A, %b. %d, %Y') %></footer>
+                </blockquote>  
+            <% end %>
+
             <a href="/new" class="btn btn-primary btn-lg" role="button">New Journal</a>
+            
         </div>
 
-        <div class="col">
-            <%= @journals.gratitudes.sample.content %>
-        </div>
-    </div>
+        <% if @journals.count > 0 %>
 
-
-    <% if @journals.count > 0 %>
-        <div class="row pt-4">
-
-            <div class="col-12">
+            <div class="col-lg leaf-2 mt-4 mt-lg-0">
                 <h1>Your Journals</h1>
-            </div>
 
-            <div class="leaf-2 col-12 d-flex flex-wrap flex-fill">
                 <ul>
                     <% @journals.each do |journal| %>
                     <li>
-                        <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.created_at.strftime('%A, %b. %d %Y') %> &bull; <%= journal.title %></a></p>
+                        <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.created_at.strftime('%A, %b. %d, %Y') %> &bull; <%= journal.title %></a></p>
                     </li>
                 <% end %>
             </div>
-        
-        </div>
+            
+        <% end %>
 
-    <% end %>
+    </div>
 
 </div>
