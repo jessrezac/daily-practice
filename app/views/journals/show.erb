@@ -54,10 +54,14 @@
 
     <div class="row pt-4">
         <div class="col-6 text-left">
-            <a href="<%= @journal.prev.id %>" tabindex="-1">&laquo; Previous</a>
+            <% if @journal.prev %>
+                <a href="<%= @journal.prev.id %>" tabindex="-1">&laquo; Previous</a>
+            <% end %>
         </div>
         <div class="col-6 text-right">
-            <a href="<%= @journal.next.id %>" >Next &raquo;</a>
+            <% if @journal.next %>
+                <a href="<%= @journal.next.id %>" >Next &raquo;</a>
+            <% end %>
         </div>
     </div>
 
