@@ -2,25 +2,36 @@
 
 <div id="journals" class="container">
 
-    <div class="row">
+    <div class="row text-center">
 
-        <div class="col-12">
-            <h1>Revisit Your Practices</h1>
+        <div class="col">
+            <a href="/new" class="btn btn-primary btn-lg" role="button">New Journal</a>
         </div>
-    
+
+        <div class="col">
+            <%= @journals.gratitudes.sample.content %>
+        </div>
     </div>
 
-    <div class="row">
 
-        <div class="leaf-2 col-12 d-flex flex-wrap flex-fill">
-            <ul>
-                <% @journals.each do |journal| %>
-                <li>
-                    <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.created_at.strftime('%A, %b. %d %Y') %> &bull; <%= journal.title %></a></p>
-                </li>
-            <% end %>
+    <% if @journals.count > 0 %>
+        <div class="row pt-4">
+
+            <div class="col-12">
+                <h1>Your Journals</h1>
+            </div>
+
+            <div class="leaf-2 col-12 d-flex flex-wrap flex-fill">
+                <ul>
+                    <% @journals.each do |journal| %>
+                    <li>
+                        <p class="lead"><a href="/journals/<%= journal.id %>"><%= journal.created_at.strftime('%A, %b. %d %Y') %> &bull; <%= journal.title %></a></p>
+                    </li>
+                <% end %>
+            </div>
+        
         </div>
-    
-    </div>
+
+    <% end %>
 
 </div>
