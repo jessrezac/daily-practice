@@ -2,6 +2,7 @@ class JournalController < ApplicationController
 
     get '/journals' do
         @journals = current_user.journals
+        @random_gratitude = current_user.random_gratitude
         erb :'journals/index'
     end
 
