@@ -47,7 +47,12 @@ class JournalController < ApplicationController
 
     get '/journals/:id/edit' do
         @journal = Journal.find(params[:id])
-        erb :'journals/edit'
+
+        if @journal.user == current_user
+            erb :'journals/edit'
+        else
+            redirect to '/journals'
+        end
     end
 
     patch '/journals/:id' do
