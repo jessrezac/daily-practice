@@ -1,13 +1,21 @@
 class JournalController < ApplicationController
 
     get '/journals' do
-        @journals = current_user.journals
-        @random_gratitude = current_user.random_gratitude
-        erb :'journals/index'
+        if is_logged_in?
+            @journals = current_user.journals
+            @random_gratitude = current_user.random_gratitude
+            erb :'journals/index'
+        else
+            redirect to '/login'
+        end
     end
 
     get '/journals/new' do
-        erb :'journals/new'
+        if is_logged_in?
+            erb :'journals/new'
+        else
+            redirect to '/login'
+        end
     end
 
     post '/journals' do
@@ -26,32 +34,44 @@ class JournalController < ApplicationController
     end
 
     post '/search' do
-        search = params[:search]
-        @journals = current_user.journals.where("content like ?", "%#{search}%")
-        erb :'/journals/index'
+        if is_logged_in?
+            search = params[:search]
+            @journals = current_user.journals.where("content like ?", "%#{search}%")
+            erb :'/journals/index'
+        else
+            redirect to '/login'
+        end
     end
 
     get '/journals/:id' do
-        @journal = Journal.find(params[:id])
-        
-        if @journal.user == current_user
-            @gratitudes = @journal.gratitudes
-            @forgivenesses = @journal.forgivenesses
-            @commitments = @journal.commitments
-            erb :'journals/show', :layout => :noheader
+        if is_logged_in?
+            @journal = Journal.find(params[:id])
+
+            if @journal.user == current_user
+                @gratitudes = @journal.gratitudes
+                @forgivenesses = @journal.forgivenesses
+                @commitments = @journal.commitments
+                erb :'journals/show', :layout => :noheader
+            else
+                redirect to '/journals'
+            end
         else
-            redirect to '/journals'
+            redirect to '/login'
         end
-        
+
     end
 
     get '/journals/:id/edit' do
-        @journal = Journal.find(params[:id])
+        if is_logged_in?
+            @journal = Journal.find(params[:id])
 
-        if @journal.user == current_user
-            erb :'journals/edit'
+            if @journal.user == current_user
+                erb :'journals/edit'
+            else
+                redirect to '/journals'
+            end
         else
-            redirect to '/journals'
+            redirect to '/login'
         end
     end
 
@@ -84,9 +104,9 @@ class JournalController < ApplicationController
         @journal.commitments.each do |commitment|
             commitment.delete
         end
-        
+
         @journal.delete
-        
+
         redirect to '/journals'
     end
 
@@ -181,7 +201,7 @@ class JournalController < ApplicationController
                 end
             end
         end
-    
+
     end
 
 end
