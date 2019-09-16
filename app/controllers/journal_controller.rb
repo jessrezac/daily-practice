@@ -76,6 +76,14 @@ class JournalController < ApplicationController
         @journal.gratitudes.each do |gratitude|
             gratitude.delete
         end
+
+        @journal.forgivenesses.each do |forgiveness|
+            forgiveness.delete
+        end
+
+        @journal.commitments.each do |commitment|
+            commitment.delete
+        end
         
         @journal.delete
         
