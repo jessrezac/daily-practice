@@ -20,11 +20,10 @@ class JournalController < ApplicationController
 
     post '/journals' do
 
-        @journal = Journal.create(
+        @journal = current_user.journals.create(
             title: params[:journal][:title],
             date: params[:journal][:date],
-            content: params[:journal][:content],
-            user_id: current_user.id )
+            content: params[:journal][:content])
 
         create_gratitudes(params[:journal][:gratitudes])
         create_forgivenesses(params[:journal][:forgivenesses])
@@ -76,38 +75,55 @@ class JournalController < ApplicationController
     end
 
     patch '/journals/:id' do
-        @journal = Journal.find(params[:id])
-        @journal.update(
-            title: params[:journal][:title],
-            date: params[:journal][:date],
-            content: params[:journal][:content]
-        )
+        if is_logged_in?
+            @journal = Journal.find(params[:id])
+            
+            if @journal.user == current_user
+                @journal.update(
+                    title: params[:journal][:title],
+                    date: params[:journal][:date],
+                    content: params[:journal][:content]
+                )   
 
-        update_gratitudes(params[:journal][:gratitudes])
-        update_forgivenesses(params[:journal][:forgivenesses])
-        update_commitment(params[:journal][:commitment])
+                update_gratitudes(params[:journal][:gratitudes])
+                update_forgivenesses(params[:journal][:forgivenesses])
+                update_commitment(params[:journal][:commitment])
 
-        redirect to "/journals/#{@journal.id}"
+                redirect to "/journals/#{@journal.id}"
+            else
+                redirect to "/journals"
+            end
+        else
+            redirect to "/login"
+        end
     end
 
     delete '/journals/:id' do
-        @journal = Journal.find(params[:id])
+        if is_logged_in?
+            if @journal.user == curent_user
+                @journal = Journal.find(params[:id])
 
-        @journal.gratitudes.each do |gratitude|
-            gratitude.delete
+                @journal.gratitudes.each do |gratitude|
+                    gratitude.delete
+                end
+
+                @journal.forgivenesses.each do |forgiveness|
+                    forgiveness.delete
+                end
+
+                @journal.commitments.each do |commitment|
+                    commitment.delete
+                end
+
+                @journal.delete
+
+                redirect to '/journals'
+            else
+                redirect to '/journals'
+            end
+        else
+            redirect to '/login'
         end
-
-        @journal.forgivenesses.each do |forgiveness|
-            forgiveness.delete
-        end
-
-        @journal.commitments.each do |commitment|
-            commitment.delete
-        end
-
-        @journal.delete
-
-        redirect to '/journals'
     end
 
     helpers do
@@ -118,8 +134,7 @@ class JournalController < ApplicationController
         def create_gratitudes(gratitudes)
             gratitudes.each do |details|
                 unless details[:content] == ""
-                    gratitude = Gratitude.create(details)
-                    @journal.gratitudes << gratitude
+                    @journal.gratitudes.create(details)
                 end
             end
         end
@@ -137,8 +152,7 @@ class JournalController < ApplicationController
                     end
                 else
                     unless details[:content] == ""
-                        gratitude = Gratitude.create(details)
-                        @journal.gratitudes << gratitude
+                        @journal.gratitudes.create(details)
                     end
                 end
             end
@@ -148,8 +162,7 @@ class JournalController < ApplicationController
         def create_forgivenesses(forgivenesses)
             forgivenesses.each do |details|
                 unless details[:content] == ""
-                    forgiveness = Forgiveness.create(details)
-                    @journal.forgivenesses << forgiveness
+                    @journal.forgivenesses.create(details)
                 end
             end
         end
@@ -168,8 +181,7 @@ class JournalController < ApplicationController
                     end
                 else
                     unless details[:content] == ""
-                        forgiveness = Forgiveness.create(details)
-                        @journal.forgivenesses << forgiveness
+                        @journal.forgivenesses.create(details)
                     end
                 end
             end
@@ -177,8 +189,7 @@ class JournalController < ApplicationController
 
         def create_commitment(details)
             unless details == ""
-                commitment = Commitment.create(content: details)
-                @journal.commitments << commitment
+                @journal.commitments.create(content: details)
             end
         end
 
@@ -195,8 +206,7 @@ class JournalController < ApplicationController
                     end
                 else
                     unless details[:content] == ""
-                        commitment = Commitment.create(content: details[:content])
-                        @journal.commitments << commitment
+                        @journal.commitments.create(content: details[:content])
                     end
                 end
             end
