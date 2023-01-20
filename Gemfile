@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem 'sinatra'
-gem 'activerecord', '~> 5.2'
+gem 'activerecord', '~> 6.1'
 gem 'bcrypt'
 gem 'require_all'
 gem 'sinatra-activerecord'
